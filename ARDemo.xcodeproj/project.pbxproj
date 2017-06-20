@@ -12,6 +12,7 @@
 		95DC4B4F1EF9D0E400F1587D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DC4B4D1EF9D0E400F1587D /* Main.storyboard */; };
 		95DC4B511EF9D0E400F1587D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95DC4B501EF9D0E400F1587D /* Assets.xcassets */; };
 		95DC4B541EF9D0E400F1587D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DC4B521EF9D0E400F1587D /* LaunchScreen.storyboard */; };
+		95DC4B5D1EF9D28700F1587D /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 95DC4B5C1EF9D28100F1587D /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		95DC4B501EF9D0E400F1587D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95DC4B531EF9D0E400F1587D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95DC4B551EF9D0E400F1587D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95DC4B5C1EF9D28100F1587D /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,8 @@
 		95DC4B481EF9D0E400F1587D /* ARDemo */ = {
 			isa = PBXGroup;
 			children = (
+				95DC4B5C1EF9D28100F1587D /* Models.scnassets */,
+				95DC4B5B1EF9D1F800F1587D /* utils */,
 				95DC4B491EF9D0E400F1587D /* AppDelegate.swift */,
 				95DC4B4B1EF9D0E400F1587D /* ViewController.swift */,
 				95DC4B4D1EF9D0E400F1587D /* Main.storyboard */,
@@ -62,6 +66,13 @@
 				95DC4B551EF9D0E400F1587D /* Info.plist */,
 			);
 			path = ARDemo;
+			sourceTree = "<group>";
+		};
+		95DC4B5B1EF9D1F800F1587D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95DC4B541EF9D0E400F1587D /* LaunchScreen.storyboard in Resources */,
+				95DC4B5D1EF9D28700F1587D /* Models.scnassets in Resources */,
 				95DC4B511EF9D0E400F1587D /* Assets.xcassets in Resources */,
 				95DC4B4F1EF9D0E400F1587D /* Main.storyboard in Resources */,
 			);
