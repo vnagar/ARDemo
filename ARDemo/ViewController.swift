@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         setupScene()
         setupUIControls()
         addPlayer()
+        
+        let tapRecognizer =  UITapGestureRecognizer(target: self, action: #selector(sceneTapped(_:)))
+        sceneView.gestureRecognizers = [tapRecognizer]
     }
 
     override func didReceiveMemoryWarning() {
@@ -193,6 +196,37 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func sceneTapped(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: sceneView)
+        
+        guard let player = player else {
+            return
+        }
+        guard let pointOnInfinitePlane = sceneView.hitTestWithInfiniteHorizontalPlane(location, player.position) else {
+            return
+        }
+        print("point on infinite plane is \(String(describing: pointOnInfinitePlane))")
+        
+        let angle = getAngleFromDirection(currentPosition: player.position, target: pointOnInfinitePlane)
+        player.eulerAngles.y = angle
+        player.changeAnimationState(newState: .Walk)
+        
+        let moveAction = SCNAction.move(to: pointOnInfinitePlane, duration: 2.0)
+        let action = SCNAction.run { node -> Void in
+            player.changeAnimationState(newState: .Idle)
+        }
+        player.runAction(SCNAction.sequence([moveAction, action]))
+    }
+    
+    private func getAngleFromDirection(currentPosition:SCNVector3, target:SCNVector3) -> Float
+    {
+        let delX = target.x - currentPosition.x;
+        let delZ = target.z - currentPosition.z;
+        let angleInRadians =  atan2(delX, delZ);
+        
+        return Float(angleInRadians)
+    }
+    
     @objc func restartAction(_ sender:UIButton) {
         updateVirtualObjectTransform()
     }
@@ -314,7 +348,6 @@ class ViewController: UIViewController {
             return
         }
         
-        print("Camera euler angles: \(String(describing: sceneView.session.currentFrame?.camera.eulerAngles))")
         let cameraPos = SCNVector3.positionFromTransform(cameraTransform)
         let vectorToCamera = cameraPos - object.position
         
@@ -325,7 +358,7 @@ class ViewController: UIViewController {
             angleDegrees += 360
         }
         
-        print("ANGLE IN DEGREES BETWEEN VECTORS is \(angleDegrees)")
+        //print("ANGLE IN DEGREES BETWEEN VECTORS is \(angleDegrees)")
         object.eulerAngles.y = angle
         
     }
@@ -334,7 +367,7 @@ class ViewController: UIViewController {
 extension ViewController : ARSCNViewDelegate {
     //MARK: - ARSCNViewDelegate methods
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        //updateVirtualObjectTransform()
+        // updateVirtualObjectTransform()
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
