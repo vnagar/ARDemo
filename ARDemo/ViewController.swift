@@ -312,6 +312,20 @@ class ViewController: UIViewController {
         
     }
     
+    let skeleton:SCNNode = SCNNode()
+    
+    private func addSkeleton() {
+        guard let virtualObjectScene = SCNScene(named:"Models.scnassets/skeleton.dae") else {
+            return
+        }
+        
+        for child in virtualObjectScene.rootNode.childNodes {
+            child.geometry?.firstMaterial?.lightingModel = .physicallyBased
+            child.movabilityHint = .movable
+            skeleton.addChildNode(child)
+        }
+    }
+    
     private func displayVirtualObjectTransform() {
         guard let object = player, let cameraTransform = sceneView.session.currentFrame?.camera.transform else {
             return
